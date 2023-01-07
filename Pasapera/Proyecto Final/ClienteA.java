@@ -12,15 +12,23 @@ import java.net.NetworkInterface;
 public class ClienteA {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-
+        int i = 0;
+        String[] ip_s = new String[2];
         ClienteA clienteA = new ClienteA();
         //envio datos de ip y archivo solicitado
         clienteA.enviaIP();
         Thread.sleep(1000);
         List<Directorio> directorio = clienteA.recibe();
         directorio.forEach((msg)-> System.out.println("En el main " + msg.getIp() + " " + msg.getPuerto()));
-        Client client1 = new Client("192.168.0.93", 8888);
-        Client client2 = new Client("192.168.0.61", 8888);
+        for (Directorio d:directorio){
+            ip_s[i] = d.getIp();
+            i ++;
+        }
+        System.out.println("\nEsta es la IP1:" + ip_s[0] + " Esta es la IP2: " + ip_s[1]);
+        Client client1 = new Client(ip_s[0], 8888);
+        Client client2 = new Client(ip_s[1], 8888);
+        /*Client client1 = new Client("192.168.0.93", 8888);
+        Client client2 = new Client("192.168.0.61", 8888);*/
         /*Client client3 = new Client("192.168.1.102", 8888);*/
 
         client1.start();
@@ -74,7 +82,7 @@ public class ClienteA {
     
     public void enviaIP() throws IOException, ClassNotFoundException{
         // need host and port, we want to connect to the ServerSocket at port 7777
-        Socket socket = new Socket("172.21.77.235", 7777); //Aqui cambiar localhost por IP de computadora de Tracker
+        Socket socket = new Socket("localhost", 7777); //Aqui cambiar localhost por IP de computadora de Tracker
         System.out.println("Connected!");
     
         // get the output stream from the socket.
