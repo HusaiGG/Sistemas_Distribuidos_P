@@ -27,15 +27,15 @@ public class ClienteA {
         System.out.println("\nEsta es la IP del cliente1:" + ip_s[0] + "\nEsta es la IP del cliente2: " + ip_s[1]);
         Client client1 = new Client(ip_s[0], 8888);
         Client client2 = new Client(ip_s[1], 8888);
-        /*Client client1 = new Client("192.168.0.93", 8888);
-        Client client2 = new Client("192.168.0.61", 8888);*/
-        /*Client client3 = new Client("192.168.1.102", 8888);*/
 
         client1.start();
         System.out.println("El hilo del cliente1 se ha iniciado");
         client2.start();
+<<<<<<< HEAD
         System.out.println("El hilo del cliente2 se ha iniciado");
         /*client3.start();*/
+=======
+>>>>>>> refs/remotes/origin/main
 
         try {
             client1.join();
@@ -52,12 +52,17 @@ public class ClienteA {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
       /* try {
             client3.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }*/
         System.out.println("No ha muerto ningun hilo");
+=======
+
+        
+>>>>>>> refs/remotes/origin/main
     }
 
     public List recibe() throws IOException, ClassNotFoundException{
