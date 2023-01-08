@@ -16,7 +16,34 @@ public class Tracker {
         //Manda directorio de instancias
         Thread.sleep(1000);
         tracker.enviaDirectorio();
+        system.out.println("Descargando...");
+        List<Message> descargas = tracker.recibeporcentaje();
+        descargas.forEach((donwload)-> System.out.println(msg.getText() + "% de 100%"));
+        system.out.println("Descargado");
         
+    }
+
+    public List recibeporcentaje() {
+        ServerSocket ss = new ServerSocket(7777);
+        System.out.println("Tracker awaiting donwload info...");
+        Socket socket = ss.accept(); // blocking call, this will wait until a connection is attempted on this port.
+        System.out.println("Connection from " + socket + ":ClientObj!");
+
+        // get the input stream from the connected socket
+        InputStream inputStream = socket.getInputStream();
+        // create a DataInputStream so we can read data from it.
+        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+
+        List<Message> porcentajes = (List<Message>) objectInputStream.readObject();
+        System.out.println("Descargando...");
+        porcentajes.forEach((msg)-> System.out.println(msg.getText() + " " + msg.getArchivo()));
+        System.out.println("Descargado.");
+
+        System.out.println("Closing sockets from ClientObj.");
+        ss.close();
+        socket.close();
+
+        return porcentajes;
     }
 
     public List recibeIP() throws IOException, ClassNotFoundException{
