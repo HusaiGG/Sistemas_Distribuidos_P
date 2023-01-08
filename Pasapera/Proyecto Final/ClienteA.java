@@ -31,11 +31,8 @@ public class ClienteA {
         client1.start();
         System.out.println("El hilo del cliente1 se ha iniciado");
         client2.start();
-<<<<<<< HEAD
         System.out.println("El hilo del cliente2 se ha iniciado");
         /*client3.start();*/
-=======
->>>>>>> refs/remotes/origin/main
 
         try {
             client1.join();
@@ -52,17 +49,7 @@ public class ClienteA {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-<<<<<<< HEAD
-      /* try {
-            client3.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
         System.out.println("No ha muerto ningun hilo");
-=======
-
-        
->>>>>>> refs/remotes/origin/main
     }
 
     public List recibe() throws IOException, ClassNotFoundException{

@@ -36,9 +36,6 @@ public class Server extends Thread {
         @Override
         //Recibe los objetos
         public void run() {
-<<<<<<< HEAD
-            System.out.println("Inicio de run");
-=======
             int control = 0;
             int escuchando = 0;
             List<Trama> listadeTramas = new ArrayList<>();
@@ -80,7 +77,6 @@ public class Server extends Thread {
 
         public int escuchar(){
             int señal = 0;
->>>>>>> refs/remotes/origin/main
             try {
                 DataInputStream in = new DataInputStream(m_socket.getInputStream());
                 System.out.println("Digite un entero:");
@@ -132,18 +128,13 @@ public class Server extends Thread {
             do {
                 Socket socket = ss.accept();
                 threadPool.execute(new ClientSocket(socket));
-<<<<<<< HEAD
 
                 ss.close();
                 System.out.println("Conexión terminada");
-=======
->>>>>>> refs/remotes/origin/main
             } while(true);
     
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-
-    }
+}
