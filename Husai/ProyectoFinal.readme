@@ -1,0 +1,3 @@
+Ejecutar primero fragmentos esto generará 2 objetos de tipo HashMap en donde se guardará el archivo fragmentado. Un archivo tiene fragmentos pares y otro impares.
+El documento serverOBJ.java recopila esos objetos y los transforma en Hashmap para agregar las banderas y posteriormente crear los objetos y enviarlos al cliente.
+El documento clientObj.java lee la información y muestra el status
