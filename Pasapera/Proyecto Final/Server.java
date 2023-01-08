@@ -106,7 +106,6 @@ public class Server extends Thread {
             }
             
             System.out.println("Closing socket and terminating program.");
-            } 
         }
     
     }
