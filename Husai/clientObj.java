@@ -20,7 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
-public class clientObj {
+public class ClientObj {
     public static void main(String[] args) throws IOException {
 
         if (args.length != 2) {
@@ -28,6 +28,8 @@ public class clientObj {
                     "Uso desde consola: java Cliente_de_Eco <nombre de host (computadora)> <numero puerto>");
             System.exit(1);
         }
+
+        ClientObj ClientObj = new ClientObj();
 
         String nombreHost = args[0];
         int numeroPuerto = Integer.parseInt(args[1]);
@@ -87,6 +89,7 @@ public class clientObj {
                 i++;
                 porcentaje = (i * 100) / banderas;
                 descarga = descarga + simbolo;
+                ClientObj.porcentajeDescarga(banderas, porcentaje);
                 System.out.println(descarga + " " + porcentaje + "%");
                 // out.write(1);
                 Thread.sleep(1000);
@@ -123,7 +126,18 @@ public class clientObj {
         }
     }
 
-    private static void porcentajeDescarga(int banderas) {
+    public void porcentajeDescarga(int banderas, int porcentaje) {
+        //enviar porcentaje a tracker
+        Socket socket = new Socket("localhost", 7777);
+
+        OutputStream outputStream = socket.getOutputStream();
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+
+        System.out.println("Enviando porcentaje a tracker");
+        objectOutputStream.writeObject(porcentaje);
+    
+        System.out.println("Closing socket and terminating program by porcentajeDescarga().");
+        socket.close();
     }
 
 }
