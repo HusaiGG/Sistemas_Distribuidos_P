@@ -31,8 +31,10 @@ public class Server extends Thread {
     
         @Override
         public void run() {
+            System.out.println("Inicio de run");
             try {
                 DataInputStream in = new DataInputStream(m_socket.getInputStream());
+                System.out.println("Digite un entero:");
                 int n = in.readInt();
                 long time = n;
                 DataOutputStream out = new DataOutputStream(m_socket.getOutputStream());
@@ -64,7 +66,9 @@ public class Server extends Thread {
                 Socket socket = ss.accept();
     
                 threadPool.execute(new ClientSocket(socket));
-    
+
+                ss.close();
+                System.out.println("Conexión terminada");
             } while(true);
     
         } catch (IOException ex) {

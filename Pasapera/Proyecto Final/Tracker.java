@@ -64,8 +64,10 @@ public class Tracker {
         System.out.println("Sending messages to the ServerSocket");
         objectOutputStream.writeObject(directorio);
         
-        System.out.println("Closing socket and terminating program.");
+        System.out.println("Closing socket of Tracker and terminating program.");
         socket.close();
+        System.out.println("Closed socket of Tracker and terminating program.");
+
     }
 }
 

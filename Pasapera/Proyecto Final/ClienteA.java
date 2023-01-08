@@ -24,7 +24,7 @@ public class ClienteA {
             ip_s[i] = d.getIp();
             i ++;
         }
-        System.out.println("\nEsta es la IP1:" + ip_s[0] + " Esta es la IP2: " + ip_s[1]);
+        System.out.println("\nEsta es la IP del cliente1:" + ip_s[0] + "\nEsta es la IP del cliente2: " + ip_s[1]);
         Client client1 = new Client(ip_s[0], 8888);
         Client client2 = new Client(ip_s[1], 8888);
         /*Client client1 = new Client("192.168.0.93", 8888);
@@ -32,16 +32,23 @@ public class ClienteA {
         /*Client client3 = new Client("192.168.1.102", 8888);*/
 
         client1.start();
+        System.out.println("El hilo del cliente1 se ha iniciado");
         client2.start();
+        System.out.println("El hilo del cliente2 se ha iniciado");
         /*client3.start();*/
 
         try {
             client1.join();
+            System.out.println("Esperando a que el hilo del cliente1 muera");
+
         } catch (InterruptedException e) {
             e.printStackTrace();
+            System.out.println("un hilo interrumpió el hilo del cliente1");
         }
         try {
             client2.join();
+            System.out.println("Esperando a que el hilo del cliente1 muera");
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -50,7 +57,7 @@ public class ClienteA {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }*/
-        
+        System.out.println("No ha muerto ningun hilo");
     }
 
     public List recibe() throws IOException, ClassNotFoundException{
@@ -73,7 +80,7 @@ public class ClienteA {
         System.out.println("All messages:");
         listOfIP.forEach((msg)-> System.out.println(msg.getIp() + msg.getPuerto()));
     
-        System.out.println("Closing sockets.");
+        System.out.println("Closing sockets by recibe().");
         ss.close();
         socket.close();
         
@@ -119,7 +126,7 @@ public class ClienteA {
         System.out.println("Sending messages to the ServerSocket");
         objectOutputStream.writeObject(messages);
     
-        System.out.println("Closing socket and terminating program.");
+        System.out.println("Closing socket and terminating program by enviaIP().");
         socket.close();
     }
 }
