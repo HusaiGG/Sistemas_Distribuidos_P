@@ -27,13 +27,9 @@ public class ClienteA {
         System.out.println("\nEsta es la IP1:" + ip_s[0] + " Esta es la IP2: " + ip_s[1]);
         Client client1 = new Client(ip_s[0], 8888);
         Client client2 = new Client(ip_s[1], 8888);
-        /*Client client1 = new Client("192.168.0.93", 8888);
-        Client client2 = new Client("192.168.0.61", 8888);*/
-        /*Client client3 = new Client("192.168.1.102", 8888);*/
 
         client1.start();
         client2.start();
-        /*client3.start();*/
 
         try {
             client1.join();
@@ -45,11 +41,7 @@ public class ClienteA {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-      /* try {
-            client3.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
+
         
     }
 
